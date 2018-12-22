@@ -13,6 +13,7 @@ import { JWT_DEV_SECRET } from '../config/secrets';
 import jwt from 'jsonwebtoken';
 
 export let postSignup  = (req: Request, res: Response, next: NextFunction) => {
+
   const user = new User({
     email: req.body.email,
     password: req.body.password
