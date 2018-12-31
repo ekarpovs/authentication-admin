@@ -13,11 +13,9 @@ export let getList = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export let getUser = (req: Request, res: Response, next: NextFunction) => {
-  // tslint:disable-next-line:no-console
-  console.log('getUser, req');
+  const query = req.query;
 
-  const id = req.get('id');
-  User.findById(id, (err, user: UserModel) => {
+  User.findById(query.id, (err, user: UserModel) => {
     if (err) { return next(err); }
     return res.status(200).json({user});
   });
