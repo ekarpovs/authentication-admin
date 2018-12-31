@@ -1,5 +1,4 @@
 import { createLogger, transports } from 'winston';
-import { prod } from '../config/secrets';
 
 const logger = createLogger({
     transports: [
@@ -8,7 +7,7 @@ const logger = createLogger({
     ]
 });
 
-if (!prod) {
+if (process.env.NODE_ENV !== 'production') {
     logger.debug('Logging initialized at debug level');
 }
 
