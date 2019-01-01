@@ -12,7 +12,7 @@ export let getList = (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
-export let getUser = (req: Request, res: Response, next: NextFunction) => {
+export let getAccount = (req: Request, res: Response, next: NextFunction) => {
   const query = req.query;
 
   User.findById(query.id, (err, user: UserModel) => {
@@ -57,17 +57,14 @@ export let postSignup  = (req: Request, res: Response, next: NextFunction) => {
 // };
 
 /**
- * POST /account/delete
+ * DELETE /account/delete
  * Delete user account.
  */
-// export let postDeleteAccount = (req: Request, res: Response, next: NextFunction) => {
-//   // Verify tocken ?????
-//   User.remove({ _id: req.user.id }, (err) => {
-//     if (err) { return next(err); }
-//     return res.status(200).json({ msg: 'Your account has been deleted.' });
-//   });
-// };
-
-// const verifyToken = () => {
-
-// }
+export let deleteAccount = (req: Request, res: Response, next: NextFunction) => {
+  // Verify tocken ?????
+  const query = req.query;
+  User.remove({ _id: query.id }, (err) => {
+    if (err) { return next(err); }
+    return res.status(200).json({ msg: 'Your account has been deleted.' });
+  });
+};
