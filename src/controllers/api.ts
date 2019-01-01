@@ -41,23 +41,26 @@ export let postSignup  = (req: Request, res: Response, next: NextFunction) => {
 };
 
 /**
- * POST /account/password
+ * POST /account
  * Update current password.
  */
-// export let postUpdatePassword = (req: Request, res: Response, next: NextFunction) => {
-//   // Verify tocken ?????
-//   User.findById(req.user.id, (err, user: UserModel) => {
-//     if (err) { return next(err); }
-//     user.password = req.body.password;
-//     user.save((error: WriteError) => {
-//       if (error) { return next(error); }
-//       return res.status(200).json({id: user._id});
-//     });
-//   });
-// };
+export let putAccount = (req: Request, res: Response, next: NextFunction) => {
+  // Verify tocken ?????
+  // tslint:disable-next-line:no-console
+  // console.log(req.body);
+  // return res.status(200).json({ msg: 'Your account has been updated.' });
+  User.findById(req.body._id, (err, user: UserModel) => {
+    if (err) { return next(err); }
+    user.password = req.body.password;
+    user.save((error: WriteError) => {
+      if (error) { return next(error); }
+      return res.status(200).json({ msg: 'Your account has been updated.' });
+    });
+  });
+};
 
 /**
- * DELETE /account/delete
+ * DELETE /account
  * Delete user account.
  */
 export let deleteAccount = (req: Request, res: Response, next: NextFunction) => {
