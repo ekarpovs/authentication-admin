@@ -1,3 +1,3 @@
 # NodeJS
 
-This NodeJS application is a slightly more optimized.
+Authentication administration micro service - for account management.
