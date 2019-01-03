@@ -25,7 +25,8 @@ export let postSignup  = (req: Request, res: Response, next: NextFunction) => {
 
   const user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    roles: req.body.roles
   });
 
   User.findOne({ email: req.body.email }, (err, existingUser) => {
@@ -52,6 +53,7 @@ export let putAccount = (req: Request, res: Response, next: NextFunction) => {
   User.findById(req.body._id, (err, user: UserModel) => {
     if (err) { return next(err); }
     user.password = req.body.password;
+    user.roles = req.body.roles;
     user.save((error: WriteError) => {
       if (error) { return next(error); }
       return res.status(200).json({ msg: 'Your account has been updated.' });

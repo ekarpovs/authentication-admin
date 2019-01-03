@@ -6,6 +6,7 @@ const SALT_WORK_FACTOR = 10;
 export type UserModel = mongoose.Document & {
   email: string,
   password: string,
+  roles: string[],
   comparePassword: comparePasswordFunction
 };
 
@@ -13,7 +14,8 @@ type comparePasswordFunction = (candidatePassword: string, cb: (err: any, isMatc
 
 const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
-  password: String
+  password: String,
+  roles: [String]
 }, { timestamps: true });
 
 /**
