@@ -1,13 +1,14 @@
 import { createLogger, transports } from 'winston';
+import { prod } from '../config/environment';
 
 const logger = createLogger({
     transports: [
-        new (transports.Console)({ level: process.env.NODE_ENV === 'production' ? 'error' : 'debug' }),
+        new (transports.Console)({ level: prod ? 'error' : 'debug' }),
         new (transports.File)({ filename: 'debug.log', level: 'debug'})
     ]
 });
 
-if (process.env.NODE_ENV !== 'production') {
+if (!prod) {
     logger.debug('Logging initialized at debug level');
 }
 
